@@ -4,26 +4,22 @@
 using namespace std;
 
 bool increasingTriplet(vector<int>& nums) {
-    int j = 0, k = 0;
-    for (int i = 0; i < nums.size() - 2; i++)
-    {
-        j = i + 1;
-        while (j != nums.size() - 1)
-        {
-            if (nums[i] < nums[j])
-            {
-                k = j + 1;
-                while (k != nums.size())
-                {
-                    if (nums[j] < nums[k])
-                        return true;
-                    k++;
-                }
-            }
-            j++;
+    if (nums.size() < 3)
+        return false;
+    int first = INT_MAX;
+    int second = INT_MAX;
+
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] <= first) {
+            first = nums[i];
+        }
+        else if (nums[i] <= second) {
+            second = nums[i];
+        }
+        else {
+            return true;
         }
     }
-    return false;
 }
 
 int main()
